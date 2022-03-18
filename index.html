@@ -1,38 +1,102 @@
+<!DOCTYPE html>
 <head>
     <title>Lima Kilo</title>
 </head>
-<body>
     <style>
         * {
-            box-sizing: content-box;
+            box-sizing: border-box;
         }
-        html {
-            width: 100%;
+        html, body {
+            margin: 0;
             height: 100%;
-            background: rgb(24, 24, 24);
+            background: repeating-linear-gradient(135deg,
+                    rgb(24, 24, 24),
+                    rgb(24, 24, 24) 20px,
+                    rgb(35, 35, 35) 20px,
+                    rgb(35, 35, 35) 40px);
+        }
+        body {
+            display: flex;
+            flex-direction: row;
             font-family: sans-serif;
             font-size: 120%;
-            max-width: 1024px;
             color: white;
-            margin: auto;
-            margin-top: 4em;
         }
-        h1, h2, h3 {
+        nav {
+            height: 100%;
+            min-width: 400px;
+            background:rgb(24, 24, 24);
+            padding: 4px 12px;
+        }
+        nav h1 {
+            font-size: 1.5em;
+        }
+        nav h2 {
+            font-size: 1.2em;
             border-bottom: 1px solid gray;
         }
-        a, a:visited {
-            color: darkcyan;
+        nav a, a:visited {
+            color: turquoise;
             text-decoration: none;
             display: block;
-            margin: 0.5em 0;
+            margin: 0.25em 0;
+            padding: 0.25em;
+            border: 1px gray;
         }
-        a::after {
+        nav a.active {
+            color: black;
+            background: turquoise;
+        }
+        nav a::after {
             content: " >>";
         }
+        iframe {
+            border: none;
+            flex-grow: 1;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
-    <main>
-        <h2>Levant</h2>
-        <a href="https://sneaker.limakilo.net/servers/levant">Sneaker GCI</a>
-        <a href="https://levant.limakilo.net/status">Campaign Status</a>
-    </main>
+    <nav>
+        <h1>Servers</h1>
+        <h2>Levant (Europe)</h2>
+        <a id="levant-eu-sneaker" href="https://sneaker.eu.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
+        <a id="levant-eu-status" href="https://levant.eu.limakilo.net/status" target="main">Campaign Status</a>
+        <h2>Levant (North America)</h2>
+        <a id="levant-na-sneaker" href="https://sneaker.na.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
+        <a id="levant-na-status" href="https://levant.na.limakilo.net/status" target="main">Campaign Status</a>
+    </nav>
+    <iframe name="main" src="about:blank"></iframe>
+    <iframe name="loading" class="hidden" src="loading.html"></iframe>
+    <script>
+        /** @type {HTMLIFrameElement} */
+        const main = document.querySelector("iframe[name=main]");
+        /** @type {HTMLIFrameElement} */
+        const loading = document.querySelector("iframe[name=loading]");
+        const links = document.querySelectorAll("nav a");
+        let loadTimer;
+        links.forEach((element) => {
+            element.addEventListener("click", (event) => {
+                location.hash = event.target.id;
+                main.classList.add("hidden");
+                loading.classList.remove("hidden");
+                links.forEach((other) => {
+                    other.classList.remove("active");
+                });
+                event.target.classList.add("active");
+            });
+        });
+        if (location.hash) {
+            const el = document.querySelector(location.hash);
+            if (el != null) {
+                setTimeout(() => main.src = el.href);
+                el.classList.add("active");
+            }
+        }
+        main.addEventListener("load", (event) => {
+            loading.classList.add("hidden");
+            main.classList.remove("hidden");
+        });
+    </script>
 </body>
