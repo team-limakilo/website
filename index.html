@@ -24,7 +24,7 @@
         }
         nav {
             height: 100%;
-            min-width: 400px;
+            min-width: 425px;
             background:rgb(24, 24, 24);
             padding: 4px 12px;
         }
@@ -34,6 +34,7 @@
         nav h2 {
             font-size: 1.2em;
             border-bottom: 1px solid gray;
+            padding: 0.25em 0;
         }
         nav a, a:visited {
             color: turquoise;
@@ -41,7 +42,11 @@
             display: block;
             margin: 0.25em 0;
             padding: 0.25em;
-            border: 1px gray;
+            border: 1px solid transparent;
+            transition: 100ms ease-in;
+        }
+        nav a:hover {
+            border: 1px solid turquoise;
         }
         nav a.active {
             color: black;
@@ -60,12 +65,9 @@
     </style>
     <nav>
         <h1>Servers</h1>
-        <h2>Levant (Europe)</h2>
+        <h2>Flashpoint Levant (Europe)</h2>
         <a id="levant-eu-sneaker" href="https://sneaker.eu.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
         <a id="levant-eu-status" href="https://levant.eu.limakilo.net/status" target="main">Campaign Status</a>
-        <h2>Levant (North America)</h2>
-        <a id="levant-na-sneaker" href="https://sneaker.na.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
-        <a id="levant-na-status" href="https://levant.na.limakilo.net/status" target="main">Campaign Status</a>
     </nav>
     <iframe name="main" src="about:blank"></iframe>
     <iframe name="loading" class="hidden" src="loading.html"></iframe>
