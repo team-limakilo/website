@@ -2,6 +2,7 @@
 <head>
     <title>Lima Kilo</title>
 </head>
+<body>
     <style>
         * {
             box-sizing: border-box;
@@ -37,24 +38,48 @@
             border-bottom: 1px solid gray;
             padding: 0.25em 0;
         }
-        nav a, a:visited {
-            color: turquoise;
+        nav a {
             text-decoration: none;
-            display: block;
+            color: inherit;
+        }
+        nav .item {
+            color: turquoise;
+            display: flex;
             margin: 0.25em 0;
+            flex-direction: row;
+            align-items: stretch;
+        }
+        nav .item a {
+            flex-grow: 1;
             padding: 0.25em;
             border: 1px solid transparent;
             transition: 100ms ease-in;
         }
-        nav a:hover {
+        nav .item a:hover, nav .item a:active {
             border: 1px solid turquoise;
         }
-        nav a.active {
+        nav .active {
             color: black;
             background: turquoise;
         }
         nav a::after {
             content: " >>";
+        }
+        nav button {
+            padding: 0.5em 0.75em;
+            background: turquoise;
+            font-weight: bold;
+            cursor: default;
+            border: none;
+            visibility: hidden;
+            transition: 100ms ease-in;
+        }
+        nav .open button {
+            visibility: visible;
+        }
+        nav button:hover {
+            background: darkcyan;
+            color: white;
         }
         iframe {
             border: none;
@@ -67,38 +92,88 @@
     <nav>
         <h1>Servers</h1>
         <h2>Flashpoint Levant (Europe)</h2>
-        <a id="levant-eu-sneaker" href="https://sneaker.eu.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
-        <a id="levant-eu-status" href="https://levant.eu.limakilo.net/status" target="main">Campaign Status</a>
+        <div class="item">
+            <a id="levant-eu-sneaker" href="https://sneaker.eu.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
+            <button type="button">X</button>
+        </div>
+        <div class="item">
+            <a id="levant-eu-status" href="https://levant.eu.limakilo.net/status" target="main">Campaign Status</a>
+            <button type="button">X</button>
+        </div>
     </nav>
     <iframe name="main" src="about:blank"></iframe>
     <iframe name="loading" class="hidden" src="loading.html"></iframe>
     <script>
-        /** @type {HTMLIFrameElement} */
         const main = document.querySelector("iframe[name=main]");
-        /** @type {HTMLIFrameElement} */
         const loading = document.querySelector("iframe[name=loading]");
-        const links = document.querySelectorAll("nav a");
-        links.forEach((element) => {
-            element.addEventListener("click", (event) => {
-                location.hash = event.target.id;
-                main.classList.add("hidden");
-                loading.classList.remove("hidden");
-                links.forEach((other) => {
+        const items = document.querySelectorAll("nav .item");
+
+        // Enable dynamic links
+        items.forEach((item) => {
+            const link = item.querySelector("a");
+            const button = item.querySelector("button");
+            link.setAttribute("target", link.id);
+            link.addEventListener("click", (event) => {
+                /** @type {HTMLElement} */
+                const link = event.target;
+                const item = link.parentElement;
+                location.hash = link.id;
+                items.forEach((other) => {
                     other.classList.remove("active");
                 });
-                event.target.classList.add("active");
+                item.classList.add("active");
+                document.querySelectorAll("iframe").forEach((iframe) => {
+                    iframe.classList.add("hidden");
+                });
+                /** @type {HTMLElement} */
+                let iframe = document.querySelector(`iframe[name="${link.id}"`);
+                if (iframe == null) {
+                    // Create a new iframe
+                    loading.classList.remove("hidden");
+                    iframe = document.createElement("iframe");
+                    iframe.setAttribute("name", link.id);
+                    iframe.setAttribute("src", link.href);
+                    iframe.classList.add("hidden");
+                    document.querySelector("iframe").insertAdjacentElement("afterend", iframe);
+                    iframe.addEventListener("load", (event) => {
+                        const activeLink = document.querySelector(".item.active a");
+                        if (iframe.name === activeLink.id) {
+                            loading.classList.add("hidden");
+                            iframe.classList.remove("hidden");
+                        }
+                    });
+                    item.classList.add("open");
+                } else {
+                    // Switch to existing iframe
+                    loading.classList.add("hidden");
+                    iframe.classList.remove("hidden");
+                    event.preventDefault();
+                }
+            });
+            button.addEventListener("click", (event) => {
+                /** @type {HTMLElement} */
+                const button = event.target;
+                const item = button.parentElement;
+                const link = item.querySelector("a");
+                item.classList.remove("open");
+                item.classList.remove("active");
+                document.querySelector(`iframe[name="${link.id}"]`).remove();
+                if (`#${link.id}` === location.hash) {
+                    loading.classList.add("hidden");
+                    location.hash = "";
+                }
             });
         });
+
+        // Activate current link
         if (location.hash) {
-            const el = document.querySelector(location.hash);
-            if (el != null) {
-                setTimeout(() => main.src = el.href);
-                el.classList.add("active");
+            const link = document.querySelector(location.hash);
+            if (link != null) {
+                link.dispatchEvent(new Event("click"));
             }
         }
-        main.addEventListener("load", (event) => {
-            loading.classList.add("hidden");
-            main.classList.remove("hidden");
-        });
+
+        // Remove main iframe if JS is available
+        main.remove();
     </script>
 </body>
