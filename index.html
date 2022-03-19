@@ -24,6 +24,7 @@
         }
         nav {
             height: 100%;
+            font-size: 90%;
             min-width: 425px;
             background:rgb(24, 24, 24);
             padding: 4px 12px;
@@ -77,7 +78,6 @@
         /** @type {HTMLIFrameElement} */
         const loading = document.querySelector("iframe[name=loading]");
         const links = document.querySelectorAll("nav a");
-        let loadTimer;
         links.forEach((element) => {
             element.addEventListener("click", (event) => {
                 location.hash = event.target.id;
