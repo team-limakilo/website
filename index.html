@@ -88,6 +88,14 @@
         .hidden {
             display: none;
         }
+        /* display: none breaks iframes on Firefox */
+        iframe.hidden {
+            display: block;
+            visibility: hidden;
+            position: absolute;
+            width: 0px;
+            height: 0px;
+        }
     </style>
     <nav>
         <h1>Servers</h1>
