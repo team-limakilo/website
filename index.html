@@ -102,13 +102,24 @@
             });
         });
 
-        // Activate current link on page load
+        // Activate link on page load
         if (location.hash) {
             const link = document.querySelector(location.hash);
             if (link != null) {
                 link.dispatchEvent(new Event("click"));
             }
         }
+
+        // And on changes as well
+        window.addEventListener("hashchange", (event) => {
+            const activeLink = document.querySelector(".item.active a");
+            if (activeLink == null || `#${activeLink.id}` !== location.hash) {
+                const newLink = document.querySelector(location.hash);
+                if (newLink != null) {
+                    newLink.dispatchEvent(new Event("click"));
+                }
+            }
+        });
 
         // Remove main iframe if JS is available
         main.remove();
