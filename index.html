@@ -1,105 +1,16 @@
 <!DOCTYPE html>
 <head>
     <title>Lima Kilo</title>
+    <link rel="stylesheet" href="common.css">
 </head>
-<body>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        html, body {
-            margin: 0;
-            height: 100%;
-            background: repeating-linear-gradient(135deg,
-                    rgb(24, 24, 24),
-                    rgb(24, 24, 24) 20px,
-                    rgb(35, 35, 35) 20px,
-                    rgb(35, 35, 35) 40px);
-        }
-        body {
-            display: flex;
-            flex-direction: row;
-            font-family: sans-serif;
-            font-size: 120%;
-            color: white;
-        }
-        nav {
-            height: 100%;
-            font-size: 90%;
-            min-width: 425px;
-            background:rgb(24, 24, 24);
-            padding: 4px 12px;
-        }
-        nav h1 {
-            font-size: 1.5em;
-        }
-        nav h2 {
-            font-size: 1.2em;
-            border-bottom: 1px solid gray;
-            padding: 0.25em 0;
-        }
-        nav a {
-            text-decoration: none;
-            color: inherit;
-        }
-        nav .item {
-            color: turquoise;
-            display: flex;
-            margin: 0.25em 0;
-            flex-direction: row;
-            align-items: stretch;
-        }
-        nav .item a {
-            flex-grow: 1;
-            padding: 0.25em;
-            border: 1px solid transparent;
-            transition: 100ms ease-in;
-        }
-        nav .item a:hover, nav .item a:active {
-            border: 1px solid turquoise;
-        }
-        nav .active {
-            color: black;
-            background: turquoise;
-        }
-        nav a::after {
-            content: " >>";
-        }
-        nav button {
-            padding: 0.5em 0.75em;
-            background: turquoise;
-            font-weight: bold;
-            cursor: default;
-            border: none;
-            visibility: hidden;
-            transition: 100ms ease-in;
-        }
-        nav .open button {
-            visibility: visible;
-        }
-        nav button:hover {
-            background: darkcyan;
-            color: white;
-        }
-        iframe {
-            border: none;
-            flex-grow: 1;
-        }
-        .hidden {
-            display: none;
-        }
-        /* display: none breaks iframes on Firefox */
-        iframe.hidden {
-            display: block;
-            visibility: hidden;
-            position: absolute;
-            width: 0px;
-            height: 0px;
-        }
-    </style>
+<body class="flex">
     <nav>
         <h1>Servers</h1>
         <h2>Flashpoint Levant (Europe)</h2>
+        <div class="item">
+            <a id="levant-eu-details" href="servers/levant_eu.html" target="main">Server Details</a>
+            <button type="button">X</button>
+        </div>
         <div class="item">
             <a id="levant-eu-sneaker" href="https://sneaker.eu.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
             <button type="button">X</button>
@@ -108,9 +19,25 @@
             <a id="levant-eu-status" href="https://levant.eu.limakilo.net/status" target="main">Campaign Status</a>
             <button type="button">X</button>
         </div>
+        <h2>Flashpoint Levant (North America)</h2>
+        <div class="item">
+            <a id="levant-na-details" href="servers/levant_na.html" target="main">Server Details</a>
+            <button type="button">X</button>
+        </div>
+        <div class="item">
+            <a id="levant-na-sneaker" href="https://sneaker.na.limakilo.net/servers/levant" target="main">Sneaker GCI</a>
+            <button type="button">X</button>
+        </div>
+        <div class="item">
+            <a id="levant-na-status" href="https://levant.na.limakilo.net/status" target="main">Campaign Status</a>
+            <button type="button">X</button>
+        </div>
+        <div class="spacer"></div>
+        <a href="https://discord.gg/dPG9pNuxJc" target="_blank">Join our Discord</a>
+        <a href="https://www.patreon.com/LimaKilo" target="_blank">Support us on Patreon</a>
     </nav>
-    <iframe name="main" src="about:blank"></iframe>
-    <iframe name="loading" class="hidden" src="loading.html"></iframe>
+    <iframe name="main" class="content"></iframe>
+    <iframe name="loading" class="content hidden" src="loading.html"></iframe>
     <script>
         const main = document.querySelector("iframe[name=main]");
         const loading = document.querySelector("iframe[name=loading]");
@@ -119,7 +46,7 @@
         // Enable dynamic links
         items.forEach((item) => {
             const link = item.querySelector("a");
-            const button = item.querySelector("button");
+            const closeButton = item.querySelector("button");
             link.setAttribute("target", link.id);
             link.addEventListener("click", (event) => {
                 /** @type {HTMLElement} */
@@ -130,7 +57,7 @@
                     other.classList.remove("active");
                 });
                 item.classList.add("active");
-                document.querySelectorAll("iframe").forEach((iframe) => {
+                document.querySelectorAll("iframe.content").forEach((iframe) => {
                     iframe.classList.add("hidden");
                 });
                 /** @type {HTMLElement} */
@@ -141,8 +68,9 @@
                     iframe = document.createElement("iframe");
                     iframe.setAttribute("name", link.id);
                     iframe.setAttribute("src", link.href);
+                    iframe.classList.add("content");
                     iframe.classList.add("hidden");
-                    document.querySelector("iframe").insertAdjacentElement("afterend", iframe);
+                    document.querySelector("iframe.content").insertAdjacentElement("afterend", iframe);
                     iframe.addEventListener("load", (event) => {
                         const activeLink = document.querySelector(".item.active a");
                         if (iframe.name === activeLink.id) {
@@ -158,7 +86,8 @@
                     event.preventDefault();
                 }
             });
-            button.addEventListener("click", (event) => {
+            // Close iframe when the button is clicked
+            closeButton.addEventListener("click", (event) => {
                 /** @type {HTMLElement} */
                 const button = event.target;
                 const item = button.parentElement;
@@ -173,7 +102,7 @@
             });
         });
 
-        // Activate current link
+        // Activate current link on page load
         if (location.hash) {
             const link = document.querySelector(location.hash);
             if (link != null) {
