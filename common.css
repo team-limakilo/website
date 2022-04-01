@@ -141,6 +141,11 @@ code {
     padding: 0 0.25em;
 }
 
+code.error {
+    background:rgb(46, 20, 20);
+    color: rgb(253, 35, 35);
+}
+
 .panel {
     background: rgb(24, 24, 24);
     border-radius: 20px;
