@@ -137,6 +137,31 @@ iframe {
     flex-grow: 1;
 }
 
+.panel a, .panel a:visited {
+    color: turquoise;
+    transition: 100ms ease-in;
+}
+
+.panel a:hover {
+    color: darkcyan;
+}
+
+form label, form button {
+    display: block;
+    margin-top: 1em;
+}
+
+form input, form textarea {
+    resize: vertical;;
+    width: 100%;
+}
+
+form button {
+    font-size: 12pt;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
 code {
     font-family: 'Courier New', Courier, monospace;
     background:rgb(20, 38, 41);
@@ -169,4 +194,10 @@ iframe.hidden {
     position: absolute;
     width: 0px;
     height: 0px;
+}
+
+@media(max-width: 768px) {
+    .panel {
+        margin: 0;
+    }
 }

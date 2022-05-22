@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Lima Kilo - Contact</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="miggus_16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="miggus_32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="miggus_48x48.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="max-width: 1024px">
+    <div class="panel">
+        <h1>Business/Legal Contact</h1>
+        <label>
+            <input type="checkbox" id="confirm">
+            I understand that this page is only for business inquiries, legal requests, or issues with the website, and any matters
+            related to the Lima Kilo DCS server(s), Discord community, or Patreon membership should be resolved through the
+            <a href="https://discord.gg/dPG9pNuxJc" target="_blank">Community Discord</a> instead.
+        </label>
+        <br /><br />
+        <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+            <label>
+                <div>Your Name/Company:</div>
+                <input disabled type="text" name="name">
+            </label>
+            <label>
+                <div>Your Email:</div>
+                <input disabled type="text" name="email">
+            </label>
+            <label>
+                <div>Message:</div>
+                <textarea disabled name="message" rows="12"></textarea>
+            </label>
+            <div data-netlify-recaptcha="true"></div>
+            <button disabled type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.getElementById("confirm").addEventListener("change", (event) => {
+        /** @type {boolean} */
+        const checked = event.target.checked;
+        document.querySelectorAll("form *").forEach((element) => {
+            element.disabled = checked === false;
+        });
+        if (checked) {
+            document.querySelector("form input").focus();
+        }
+    });
+</script>
