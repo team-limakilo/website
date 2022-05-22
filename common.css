@@ -51,6 +51,10 @@ nav h2 {
     padding: 0.25em 0;
 }
 
+nav h1.compact {
+    margin-bottom: 0;
+}
+
 nav a {
     text-decoration: none;
     color: inherit;
@@ -90,7 +94,7 @@ nav .item a::after {
     content: " >>";
 }
 
-nav>a {
+nav > a, nav > a:visited {
     border: 1px solid gray;
     padding: 0.25em;
     margin: 0.25em 0;
@@ -100,7 +104,7 @@ nav>a {
     transition: 100ms ease-in;
 }
 
-nav>a:hover, nav>a:focus {
+nav > a:hover, nav > a:focus {
     background: rgb(60, 60, 60);
 }
 

@@ -25,6 +25,7 @@ items.forEach((item) => {
             // Create a new iframe
             loading.classList.remove("hidden");
             iframe = document.createElement("iframe");
+            iframe.setAttribute("allow", "fullscreen");
             iframe.setAttribute("name", link.id);
             iframe.setAttribute("src", link.href);
             iframe.classList.add("content");
