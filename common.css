@@ -32,13 +32,17 @@ nav {
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-width: 425px;
+    width: 100%;
+    max-width: 425px;
+    flex-shrink: 0;
     background: rgb(24, 24, 24);
     padding: 4px 12px;
+    overflow-y: auto;
 }
 
 nav .spacer {
     flex-grow: 1;
+    padding: 2em 0;
 }
 
 nav h1 {
@@ -196,8 +200,6 @@ iframe.hidden {
     height: 0px;
 }
 
-@media(max-width: 768px) {
-    .panel {
-        margin: 0;
-    }
+.menu, .shade {
+    display: none;
 }

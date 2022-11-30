@@ -1,3 +1,4 @@
+const body = document.body;
 const main = document.querySelector("iframe[name=main]");
 const loading = document.querySelector("iframe[name=loading]");
 const items = document.querySelectorAll("nav .item");
@@ -36,14 +37,18 @@ items.forEach((item) => {
                 if (iframe.name === activeLink.id) {
                     loading.classList.add("hidden");
                     iframe.classList.remove("hidden");
+                    iframe.scrollIntoView();
                 }
             });
             item.classList.add("open");
+            body.dispatchEvent(new Event("x-close-menu"));
         } else {
             // Switch to existing iframe
             loading.classList.add("hidden");
             iframe.classList.remove("hidden");
             event.preventDefault();
+            body.dispatchEvent(new Event("x-close-menu"));
+            setTimeout(() => iframe.scrollIntoView());
         }
     });
     // Close iframe when the X button is clicked
