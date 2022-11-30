@@ -1,7 +1,15 @@
 @media(max-width: 899px) {
+    .mobile {
+        display: unset;
+    }
     .menu {
-        display: block;
         position: fixed;
+        color: white;
+    }
+    .fullscreen {
+        position: fixed;
+        color: white;
+        top: 1.2em;
     }
     nav {
         position: fixed;
@@ -19,7 +27,6 @@
         margin: 0;
     }
     .shade {
-        display: block;
         position: fixed;
         background: rgba(38, 38, 38, 0.5);
         cursor: pointer;

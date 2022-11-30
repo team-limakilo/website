@@ -200,6 +200,6 @@ iframe.hidden {
     height: 0px;
 }
 
-.menu, .shade {
+.mobile {
     display: none;
 }
