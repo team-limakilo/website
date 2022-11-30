@@ -19,6 +19,7 @@ fullscreen.addEventListener("click", () => {
         body.requestFullscreen();
     } else {
         document.exitFullscreen();
+        body.scrollTo(0, 0);
     }
 });
 
