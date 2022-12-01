@@ -34,14 +34,15 @@ function menuIsOpen() {
 
 /**
  * @argument {TouchEvent} event
- * @argument {boolean} useChanged
  */
-function registerTouch(event, useChanged = false) {
-    const touch = useChanged ? event.changedTouches[0] : event.touches[0];
-    while (touchTrail.length > 0 && event.timeStamp - touchTrail[0].time > 100) {
-        touchTrail.shift();
+function registerTouch(event, save = true) {
+    if (save) {
+        const touch = event.touches[0];
+        while (touchTrail.length > 0 && event.timeStamp - touchTrail[0].time > 100) {
+            touchTrail.shift();
+        }
+        touchTrail.push({ x: touch.clientX, y: touch.clientY, time: event.timeStamp });
     }
-    touchTrail.push({ x: touch.clientX, y: touch.clientY, time: event.timeStamp });
     return touchTrail[touchTrail.length - 1];
 }
 
@@ -86,7 +87,7 @@ body.addEventListener("touchmove", (event) => {
 body.addEventListener("touchend", (event) => {
     if (menuIsOpen() && touchMode === MODE_CLOSE) {
         let velocity = 0;
-        const lastTouch = registerTouch(event, true);
+        const lastTouch = registerTouch(event, false);
         if (touchTrail.length > 0) {
             const distanceMoved = lastTouch.x - touchTrail[0].x;
             const timeDiff = lastTouch.time - touchTrail[0].time;
