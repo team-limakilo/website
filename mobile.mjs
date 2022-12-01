@@ -59,12 +59,11 @@ body.addEventListener("touchmove", (event) => {
     if (menuIsOpen() && touchStart != null) {
         if (touchMode === MODE_NONE) {
             const touch = registerTouch(event);
-            const totalY = touch.y - touchStart.y;
-            if (Math.abs(totalY) > 5) {
+            const totalX = Math.abs(touch.x - touchStart.x);
+            const totalY = Math.abs(touch.y - touchStart.y);
+            if (totalY > 5 && totalY >= totalX) {
                 touchMode = MODE_SCROLL;
-            }
-            const totalX = touch.x - touchStart.x;
-            if (Math.abs(totalX) > 25) {
+            } else if (totalX > 5 && totalX > totalY) {
                 touchMode = MODE_CLOSE;
             }
         }
