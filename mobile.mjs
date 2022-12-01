@@ -95,7 +95,7 @@ body.addEventListener("touchend", (event) => {
         nav.style.transition = "";
         nav.style.left = "";
         const offset = lastTouch.x - touchStart.x;
-        const predictedOffset = offset + velocity * 200;
+        const predictedOffset = offset + velocity * 500;
         if (velocity <= 0 && touchStart.x + predictedOffset < window.innerWidth * 0.1) {
             closeMenu();
         }
