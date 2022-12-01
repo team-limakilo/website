@@ -14,6 +14,7 @@ const MODE_NONE = 0;
 const MODE_CLOSE = 1;
 const MODE_SCROLL = 2;
 let touchMode = MODE_NONE;
+let touchingNav = false;
 
 /** @param {Event} event */
 function closeMenu(event) {
@@ -52,6 +53,9 @@ body.addEventListener("touchstart", (event) => {
     if (menuIsOpen()) {
         touchStart = registerTouch(event);
         touchMode = MODE_NONE;
+        if (!event.target.closest("nav")) {
+            touchMode = MODE_CLOSE;
+        }
     }
 });
 
