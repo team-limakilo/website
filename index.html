@@ -69,7 +69,8 @@
             mobileStyle.href = "mobile.css";
             document.body.appendChild(mobileStyle);
             const mobileScript = document.createElement("script");
-            mobileScript.src = "mobile.js";
+            mobileScript.src = "mobile.mjs";
+            mobileScript.type = "module";
             document.body.appendChild(mobileScript);
         }
     </script>

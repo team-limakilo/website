@@ -2,7 +2,6 @@ const body = document.body;
 const main = document.querySelector("iframe[name=main]");
 const loading = document.querySelector("iframe[name=loading]");
 const items = document.querySelectorAll("nav .item");
-const nav = document.querySelector("nav");
 
 // Enable dynamic links
 items.forEach((item) => {
