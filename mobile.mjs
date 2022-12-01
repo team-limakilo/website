@@ -38,7 +38,7 @@ function menuIsOpen() {
  */
 function registerTouch(event, useChanged = false) {
     const touch = useChanged ? event.changedTouches[0] : event.touches[0];
-    while (touchTrail.length > 0 && event.time - touchTrail[0].time > 100) {
+    while (touchTrail.length > 0 && event.timeStamp - touchTrail[0].time > 100) {
         touchTrail.shift();
     }
     touchTrail.push({ x: touch.clientX, y: touch.clientY, time: event.timeStamp });
@@ -60,24 +60,24 @@ body.addEventListener("touchstart", (event) => {
 });
 
 body.addEventListener("touchmove", (event) => {
-    if (menuIsOpen() && touchStart != null) {
+    if (menuIsOpen() && touchMode !== MODE_SCROLL) {
+        const touch = registerTouch(event);
         if (touchMode === MODE_NONE) {
-            const touch = registerTouch(event);
             const totalX = Math.abs(touch.x - touchStart.x);
             const totalY = Math.abs(touch.y - touchStart.y);
-            if (totalY > 5 && totalY >= totalX) {
+            if (totalY > 0 && totalY >= totalX) {
                 touchMode = MODE_SCROLL;
-            } else if (totalX > 5 && totalX > totalY) {
+                return;
+            } else if (totalX > 0) {
                 touchMode = MODE_CLOSE;
             }
         }
         if (touchMode === MODE_CLOSE) {
-            const touch = registerTouch(event);
             const offset = Math.min(touch.x - touchStart.x, 0);
             nav.style.transition = "none";
             nav.style.left = offset + "px";
-            event.preventDefault();
         }
+        event.preventDefault();
     }
 }, {
     passive: false
@@ -85,18 +85,18 @@ body.addEventListener("touchmove", (event) => {
 
 body.addEventListener("touchend", (event) => {
     if (menuIsOpen() && touchMode === MODE_CLOSE) {
-        const touchEndX = event.changedTouches[0].clientX;
         let velocity = 0;
+        const lastTouch = registerTouch(event, true);
         if (touchTrail.length > 0) {
-            const lastTouch = registerTouch(event, true);
             const distanceMoved = lastTouch.x - touchTrail[0].x;
             const timeDiff = lastTouch.time - touchTrail[0].time;
-            velocity = distanceMoved / timeDiff;
+            velocity = timeDiff > 0 ? distanceMoved / timeDiff : 0;
         }
         nav.style.transition = "";
         nav.style.left = "";
-        touchStart = undefined;
-        if (velocity < (touchEndX / -window.innerWidth)) {
+        const offset = lastTouch.x - touchStart.x;
+        const predictedOffset = offset + velocity * 200;
+        if (velocity <= 0 && touchStart.x + predictedOffset < window.innerWidth * 0.1) {
             closeMenu();
         }
     }
