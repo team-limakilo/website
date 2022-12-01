@@ -35,14 +35,12 @@ function menuIsOpen() {
 /**
  * @argument {TouchEvent} event
  */
-function registerTouch(event, save = true) {
-    if (save) {
-        const touch = event.touches[0];
-        while (touchTrail.length > 0 && event.timeStamp - touchTrail[0].time > 100) {
-            touchTrail.shift();
-        }
-        touchTrail.push({ x: touch.clientX, y: touch.clientY, time: event.timeStamp });
+function registerTouch(event) {
+    const touch = event.touches[0] || event.changedTouches[0];
+    while (touchTrail.length > 0 && event.timeStamp - touchTrail[0].time > 100) {
+        touchTrail.shift();
     }
+    touchTrail.push({ x: touch.clientX, y: touch.clientY, time: event.timeStamp });
     return touchTrail[touchTrail.length - 1];
 }
 
@@ -87,7 +85,7 @@ body.addEventListener("touchmove", (event) => {
 body.addEventListener("touchend", (event) => {
     if (menuIsOpen() && touchMode === MODE_CLOSE) {
         let velocity = 0;
-        const lastTouch = registerTouch(event, false);
+        const lastTouch = registerTouch(event);
         if (touchTrail.length > 0) {
             const distanceMoved = lastTouch.x - touchTrail[0].x;
             const timeDiff = lastTouch.time - touchTrail[0].time;
@@ -95,9 +93,13 @@ body.addEventListener("touchend", (event) => {
         }
         nav.style.transition = "";
         nav.style.left = "";
+        const PREDICT_MS = 200;
         const offset = lastTouch.x - touchStart.x;
-        const predictedOffset = offset + velocity * 500;
-        if (velocity <= 0 && touchStart.x + predictedOffset < window.innerWidth * 0.1) {
+        const predictedOffset = Math.abs(offset + velocity * PREDICT_MS);
+        const predictedTouch = lastTouch.x + velocity * PREDICT_MS;
+        const borderHit = predictedTouch < -body.clientWidth / 10;
+        const halfHidden = predictedOffset > body.clientWidth / 2;
+        if (velocity <= 0 && (borderHit || halfHidden)) {
             closeMenu();
         }
     }
