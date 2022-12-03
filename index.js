@@ -47,7 +47,9 @@ items.forEach((item) => {
             loading.classList.add("hidden");
             iframe.classList.remove("hidden");
             event.preventDefault();
-            body.dispatchEvent(new Event("x-close-menu"));
+            if (typeof event.detail !== "object" || event.detail.closeMenu !== false) {
+                body.dispatchEvent(new Event("x-close-menu"));
+            }
             setTimeout(() => iframe.scrollIntoView());
         }
     });
@@ -67,7 +69,9 @@ items.forEach((item) => {
             let next = item.nextElementSibling;
             while (next) {
                 if (next.classList.contains("open")) {
-                    return next.querySelector("a").dispatchEvent(new Event("click"));
+                    return next.querySelector("a").dispatchEvent(new CustomEvent("click", {
+                        detail: { closeMenu: false }
+                    }));
                 } else {
                     next = next.nextElementSibling;
                 }
@@ -75,7 +79,9 @@ items.forEach((item) => {
             let prev = item.previousElementSibling;
             while (prev) {
                 if (prev.classList.contains("open")) {
-                    return prev.querySelector("a").dispatchEvent(new Event("click"));
+                    return prev.querySelector("a").dispatchEvent(new CustomEvent("click", {
+                        detail: { closeMenu: false }
+                    }));
                 } else {
                     prev = prev.previousElementSibling;
                 }

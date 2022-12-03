@@ -3,6 +3,7 @@
         display: unset;
     }
     .menu {
+        z-index: 95;
         position: fixed;
         background: rgb(24, 24, 24);
         width: 2em;
@@ -10,10 +11,22 @@
         border-bottom: 1px solid gray;
         border-right: 1px solid gray;
         border-bottom-right-radius: 6px;
+        cursor: pointer;
         color: white;
     }
     .menu-bar {
-        border-right: 1px solid gray;
+        display: none;
+        position: fixed;
+        z-index: 90;
+        border-left: 1px solid gray;
+        cursor: col-resize;
+        height: 100%;
+        width: 5px;
+        left: 0;
+        transition: border-left 750ms ease-in;
+    }
+    .menu-bar.hidden {
+        border-left: 1px solid transparent;
     }
     nav {
         position: fixed;
