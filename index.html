@@ -7,9 +7,20 @@
     <link rel="icon" type="image/png" sizes="32x32" href="miggus_32x32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="miggus_48x48.png">
 </head>
-<body class="flex menu-open">
-    <a href="#" class="mobile menu">[M]</a>
-    <a href="#" class="mobile fullscreen">[F]</a>
+<body class="flex">
+    <a href="#" class="mobile menu">
+        <svg viewBox="0 0 100 100" width="2em" height="2em">
+            <style>
+                rect {
+                    fill: turquoise;
+                }
+            </style>
+            <rect x="10" y="15" width="75" height="10"></rect>
+            <rect x="10" y="40" width="75" height="10"></rect>
+            <rect x="10" y="65" width="75" height="10"></rect>
+        </svg>
+    </a>
+    <div class="mobile menu-bar"></div>
     <div class="mobile shade"></div>
     <nav>
         <h1>About</h1>
@@ -64,10 +75,6 @@
     <script>
         // Experimental!
         if (location.search.includes("mobile-test")) {
-            const mobileStyle = document.createElement("link");
-            mobileStyle.rel = "stylesheet";
-            mobileStyle.href = "mobile.css";
-            document.body.appendChild(mobileStyle);
             const mobileScript = document.createElement("script");
             mobileScript.src = "mobile.mjs";
             mobileScript.type = "module";

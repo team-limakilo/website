@@ -2,7 +2,6 @@ const body = document.body;
 const nav = document.querySelector("nav");
 const menu = document.querySelector(".menu");
 const shade = document.querySelector(".shade");
-const fullscreen = document.querySelector(".fullscreen");
 
 /** @type {{ x: number, y: number, time: number }?} */
 let touchStart = null;
@@ -14,22 +13,34 @@ const MODE_NONE = 0;
 const MODE_CLOSE = 1;
 const MODE_SCROLL = 2;
 let touchMode = MODE_NONE;
-let touchingNav = false;
 
-/** @param {Event} event */
+/** @param {Event?} event */
 function closeMenu(event) {
-    body.classList.remove("menu-open");
-    event?.preventDefault();
+    if (document.querySelector("nav .item.active")) {
+        body.classList.remove("menu-open");
+        event?.preventDefault();
+        updateNavFocus();
+    }
 }
 
-/** @param {Event} event */
+/** @param {Event?} event */
 function toggleMenu(event) {
     body.classList.toggle("menu-open");
     event?.preventDefault();
+    updateNavFocus()
 }
 
 function menuIsOpen() {
     return body.classList.contains("menu-open");
+}
+
+
+function updateNavFocus() {
+    const tabIndex = menuIsOpen() ? "0" : "-1";
+    document.querySelectorAll("nav a").forEach((item) => {
+        item.tabIndex = tabIndex;
+        item.blur?.();
+    });
 }
 
 /**
@@ -105,15 +116,9 @@ body.addEventListener("touchend", (event) => {
     }
 });
 
-fullscreen?.addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-        body.requestFullscreen();
-    } else {
-        document.exitFullscreen();
-        body.scrollTo(0, 0);
-    }
-});
+const mobileStyle = document.createElement("link");
+mobileStyle.rel = "stylesheet";
+mobileStyle.href = "mobile.css";
+body.appendChild(mobileStyle);
 
-if (!document.fullscreenEnabled) {
-    fullscreen?.remove();
-}
+// toggleMenu();

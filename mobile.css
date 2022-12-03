@@ -1,23 +1,28 @@
-@media(max-width: 899px) {
+@media(max-width: 1080px) {
     .mobile {
         display: unset;
     }
     .menu {
         position: fixed;
+        background: rgb(24, 24, 24);
+        width: 2em;
+        height: 2em;
+        border-bottom: 1px solid gray;
+        border-right: 1px solid gray;
+        border-bottom-right-radius: 6px;
         color: white;
     }
-    .fullscreen {
-        position: fixed;
-        color: white;
-        top: 1.2em;
+    .menu-bar {
+        border-right: 1px solid gray;
     }
     nav {
         position: fixed;
         left: 0;
         z-index: 100;
-        max-width: 90%;
+        width: 90%;
         box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.75);
         transition: left 200ms ease-out;
+        border-right: 1px solid gray;
     }
     body:not(.menu-open) nav {
         left: -100vw;
