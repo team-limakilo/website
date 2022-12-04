@@ -3,6 +3,7 @@
     <title>Lima Kilo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="icon" type="image/png" sizes="16x16" href="miggus_16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="miggus_32x32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="miggus_48x48.png">
@@ -75,13 +76,5 @@
     <iframe name="main" class="content" allow="fullscreen"></iframe>
     <iframe name="loading" class="content hidden" src="loading.html"></iframe>
     <script src="index.js"></script>
-    <script>
-        // Experimental!
-        if (location.search.includes("mobile-test")) {
-            const mobileScript = document.createElement("script");
-            mobileScript.src = "mobile.mjs";
-            mobileScript.type = "module";
-            document.body.appendChild(mobileScript);
-        }
-    </script>
+    <script src="mobile.mjs" type="module"></script>
 </body>
