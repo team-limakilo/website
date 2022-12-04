@@ -50,9 +50,9 @@ nav.addEventListener("transitionend", (event) => {
     }
 });
 
-addTouchOpenCloseHandler(body, nav, true, () => menuIsOpen(), closeMenu);
-addTouchOpenCloseHandler(menu, nav, false, () => !menuIsOpen(), openMenu);
-addTouchOpenCloseHandler(menuBar, nav, false, () => !menuIsOpen(), openMenu);
+addTouchOpenCloseHandler(body, nav, "close", true, () => menuIsOpen(), closeMenu);
+addTouchOpenCloseHandler(menu, nav, "open", false, () => !menuIsOpen(), openMenu);
+addTouchOpenCloseHandler(menuBar, nav, "open", false, () => !menuIsOpen(), openMenu);
 
 const mobileStyle = document.createElement("link");
 mobileStyle.href = "mobile.css";
