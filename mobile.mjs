@@ -12,7 +12,7 @@ if (navigator.maxTouchPoints > 0) {
     function closeMenu(event, force = false) {
         if (force || selectedItem()) {
             body.classList.remove("menu-open");
-            menuBar.classList.remove("hidden");
+            menuBar.classList.add("hidden");
             shade.style.opacity = "";
             event?.preventDefault();
             updateNavFocus();
