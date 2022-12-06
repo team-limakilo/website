@@ -54,11 +54,29 @@
         transition: opacity 200ms ease-out;
         opacity: 1;
     }
-    iframe {
-    }
     body:not(.menu-open) .shade {
         pointer-events: none;
         cursor: unset;
         opacity: 0;
+    }
+    .flash {
+        animation-name: flash;
+        animation-duration: 750ms;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+    }
+    @keyframes flash {
+        0% {
+            color: turquoise;
+            background: transparent;
+        }
+        50% {
+            color: black;
+            background: turquoise;
+        }
+        100% {
+            background: transparent;
+            color: turquoise;
+        }
     }
 }

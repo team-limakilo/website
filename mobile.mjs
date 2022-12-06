@@ -6,6 +6,7 @@ if (navigator.maxTouchPoints > 0) {
     const menu = document.querySelector(".menu");
     const shade = document.querySelector(".shade");
     const menuBar = document.querySelector(".menu-bar");
+    const links = document.querySelectorAll(".item");
 
     /** @param {Event?} event */
     function closeMenu(event, force = false) {
@@ -15,6 +16,16 @@ if (navigator.maxTouchPoints > 0) {
             shade.style.opacity = "";
             event?.preventDefault();
             updateNavFocus();
+        } else {
+            links.forEach((link) => {
+                if (link.classList.contains("flash")) {
+                    link.removeEventListener("animationend", removeFlash);
+                    link.classList.remove("flash");
+                    reflow();
+                }
+                link.addEventListener("animationend", removeFlash, { once: true });
+                link.classList.add("flash");
+            });
         }
     }
 
@@ -28,12 +39,23 @@ if (navigator.maxTouchPoints > 0) {
         updateNavFocus();
     }
 
+    /** @param {Event?} event */
+    function removeFlash(event) {
+        if (event?.target) {
+            event.target.classList.remove("flash");
+        }
+    }
+
     function selectedItem() {
         return document.querySelector("nav .item.active");
     }
 
     function menuIsOpen() {
         return body.classList.contains("menu-open");
+    }
+
+    function reflow() {
+        document.body.offsetHeight;
     }
 
     function updateNavFocus() {
