@@ -122,10 +122,10 @@ nav button {
     padding: 0.5em 0.75em;
     background: turquoise;
     font-weight: bold;
-    cursor: default;
     border: none;
     visibility: hidden;
     transition: 100ms ease-in;
+    border-left: 1px solid rgb(24, 24, 24);
 }
 
 nav .open button {
