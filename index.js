@@ -37,7 +37,6 @@ items.forEach((item) => {
                 if (iframe.name === activeLink.id) {
                     loading.classList.add("hidden");
                     iframe.classList.remove("hidden");
-                    iframe.scrollIntoView();
                 }
             });
             item.classList.add("open");
@@ -50,7 +49,6 @@ items.forEach((item) => {
             if (typeof event.detail !== "object" || event.detail.closeMenu !== false) {
                 body.dispatchEvent(new Event("x-close-menu"));
             }
-            setTimeout(() => iframe.scrollIntoView());
         }
     });
     // Close iframe when the X button is clicked

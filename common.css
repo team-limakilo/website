@@ -33,6 +33,7 @@ nav {
     flex-direction: column;
     height: 100%;
     width: 425px;
+    min-width: 250px;
     max-width: 30%;
     flex-shrink: 0;
     background: rgb(24, 24, 24);
@@ -139,6 +140,7 @@ nav button:hover {
 iframe {
     border: none;
     flex-grow: 1;
+    min-width: 320px;
 }
 
 .panel a, .panel a:visited {
