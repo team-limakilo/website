@@ -88,13 +88,9 @@ nav .item a:hover, nav .item a:focus {
 
 nav .item.active a:hover, nav .item.active a:focus {
     background: darkcyan;
-    border: 1px solid rgb(24, 24, 24);
     color: white;
-}
-
-nav button:focus {
-    outline: 1px solid white;
-    background: darkturquoise;
+    border: 1px solid transparent;
+    border-right: 1px solid rgb(24, 24, 24);
 }
 
 nav .item.active a:focus {
@@ -143,6 +139,12 @@ nav .open button {
 nav button:hover {
     background: darkcyan;
     color: white;
+}
+
+
+nav button:focus {
+    outline: 1px solid white;
+    background: darkturquoise;
 }
 
 iframe {
