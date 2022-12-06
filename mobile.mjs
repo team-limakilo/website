@@ -12,6 +12,7 @@ if (navigator.maxTouchPoints > 0) {
         if (force || selectedItem()) {
             body.classList.remove("menu-open");
             menuBar.classList.remove("hidden");
+            shade.style.opacity = "";
             event?.preventDefault();
             updateNavFocus();
         }
@@ -21,6 +22,8 @@ if (navigator.maxTouchPoints > 0) {
     function openMenu(event) {
         body.classList.add("menu-open");
         menuBar.classList.remove("hidden");
+        shade.style.transition = "";
+        shade.style.opacity = "";
         event?.preventDefault();
         updateNavFocus();
     }
@@ -51,9 +54,9 @@ if (navigator.maxTouchPoints > 0) {
         }
     });
 
-    addTouchOpenCloseHandler(body, nav, "close", true, () => menuIsOpen(), closeMenu);
-    addTouchOpenCloseHandler(menu, nav, "open", false, () => !menuIsOpen(), openMenu);
-    addTouchOpenCloseHandler(menuBar, nav, "open", false, () => !menuIsOpen(), openMenu);
+    addTouchOpenCloseHandler(body, nav, shade, "close", true, () => menuIsOpen(), closeMenu);
+    addTouchOpenCloseHandler(menu, nav, shade, "open", false, () => !menuIsOpen(), openMenu);
+    addTouchOpenCloseHandler(menuBar, nav, shade, "open", false, () => !menuIsOpen(), openMenu);
 
     const mobileStyle = document.createElement("link");
     mobileStyle.href = "mobile.css";
