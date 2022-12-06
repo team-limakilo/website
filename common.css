@@ -79,10 +79,17 @@ nav .item a {
     padding: 0.25em;
     border: 1px solid transparent;
     transition: 100ms ease-in;
+    border-right: 1px solid rgb(24, 24, 24);
 }
 
 nav .item a:hover, nav .item a:focus {
     border: 1px solid turquoise;
+}
+
+nav .item.active a:hover, nav .item.active a:focus {
+    background: darkcyan;
+    border: 1px solid rgb(24, 24, 24);
+    color: white;
 }
 
 nav button:focus {
@@ -93,6 +100,7 @@ nav button:focus {
 nav .item.active a:focus {
     border: 1px solid white;
     background: darkturquoise;
+    color: black;
 }
 
 nav .item a::after {
@@ -123,9 +131,9 @@ nav button {
     background: turquoise;
     font-weight: bold;
     border: none;
+    cursor: pointer;
     visibility: hidden;
     transition: 100ms ease-in;
-    border-left: 1px solid rgb(24, 24, 24);
 }
 
 nav .open button {
