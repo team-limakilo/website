@@ -5,6 +5,9 @@
 html {
     margin: 0;
     height: 100%;
+}
+
+.background {
     background: repeating-linear-gradient(135deg,
     rgb(24, 24, 24),
     rgb(24, 24, 24) 20px,
@@ -39,6 +42,8 @@ nav {
     background: rgb(24, 24, 24);
     padding: 4px 12px;
     overflow-y: auto;
+    border-right: 1px solid rgb(50, 50, 50);
+    box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.33)
 }
 
 nav .spacer {
@@ -197,11 +202,20 @@ img {
     object-fit: scale-down;
 }
 
+/* Fix broken padding on embeds */
+.youtube-embed + *::before {
+    display: block;
+    content: '';
+    margin-top: 2em;
+}
+
 .panel {
     background: rgb(24, 24, 24);
+    border: 1px outset rgb(50, 50, 50);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.33);
     border-radius: 20px;
     width: 100%;
-    max-width: 80em;
+    max-width: 640px;
     height: fit-content;
     padding: 1em 2em;
     margin: 1em;
