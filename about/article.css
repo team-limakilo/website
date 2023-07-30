@@ -33,6 +33,15 @@ img {
     max-width: 100%;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid rgb(100, 100, 100);
+    padding: 2px 4px;
+}
+
 @media(max-width: 1080px) {
     .panel {
         padding: 1em;
