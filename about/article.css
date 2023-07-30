@@ -21,7 +21,7 @@
 
 blockquote {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
-    border: 1px outset rgb(40, 52, 56);
+    border: 1px solid rgb(40, 52, 56);
     background: rgba(30, 95, 112, 0.2);
     color: rgb(235, 235, 235);
     border-radius: 8px;

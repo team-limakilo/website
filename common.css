@@ -204,7 +204,7 @@ img {
 
 .panel {
     background: rgb(24, 24, 24);
-    border: 1px outset rgb(50, 50, 50);
+    border: 1px solid rgb(50, 50, 50);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.33);
     border-radius: 20px;
     width: 100%;
