@@ -43,8 +43,8 @@ table th, table td {
 }
 
 @media(max-width: 1080px) {
-    .panel {
-        padding: 1em;
+    body {
+        font-size: 1rem;
     }
     blockquote {
         background: rgba(53, 145, 168, 0.1);
@@ -55,5 +55,8 @@ table th, table td {
     }
     ol {
         padding-left: 1em;
+    }
+    .panel {
+        padding: 1em;
     }
 }
