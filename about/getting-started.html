@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <link rel="stylesheet" href="article.css">
+  <title></title>
+</head>
+<body class="flex">
+  <div class="background"></div>
+  <div class="panel">
+    <h1>Flashpoint Levant</h1>
+    <p>Flashpoint Levant is a DCS World PvE server. It features a late Cold War persistent campaign which challenges players to complete a variety of air missions over the course of multiple real-time days.</p>
+    <div class="youtube-embed">
+      <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yDrYhSLGBpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <h1>Connecting to the Server</h1>
+    <p>You can find the servers in the in-game server browser under the name "Flashpoint Levant". One server is in North America and another is in Europe. Each hosts a separate persistent instance of the mission. The password is available in the Server Details page on the website.</p>
+    <p>If there's a problem with the server browser, you can find direct connection details in the Server Details page.</p>
+    <p>The server requires <a href="https://www.digitalcombatsimulator.com/en/shop/terrains/syria_terrain/" target="_blank" rel="noopener noreferrer">DCS: Syria</a>. The free <a href="https://heclak.github.io/community-a4e-c/" target="_blank" rel="noopener noreferrer">Community A-4E-C</a> is supported and recommended, but is not required.</p>
+    <h1>Setting</h1>
+    <p>Flashpoint Levant is set in a fictional conflict in an alternate 1989. Syria (supported by the Soviet Union) has invaded and occupied Lebanon, resulting in a blockade and force buildup by the US, UK and their allies. At the start of each campaign, fighting breaks out near Syria's northern border with Turkey. The players complete missions to support the ground campaign push south, with the eventual goal of defeating the Syrian forces in Damascus.</p>
+    <h1>Objectives</h1>
+    <p>The players win in one of two ways:</p>
+    <ul>
+      <li>Complete enough strike missions to unlock the final strike on Damascus and successfully complete the final strike.</li>
+      <li>Deplete the enemy tickets to zero (i.e complete enough missions other than the final strike)</li>
+    </ul>
+    <p>The players lose if their tickets are depleted to zero (i.e. the players lose too many aircraft).</p>
+    <h1>Ticket System</h1>
+    <p>Each side has a number of tickets. If either side's tickets fall to zero, the campaign ends in the opposing side's victory.</p>
+    <p>The players lose tickets when a player's aircraft is either destroyed or disconnects without returning to a friendly airbase, FARP or carrier. The players regain tickets by completing missions.</p>
+    <p>The enemy loses tickets when the players complete missions.</p>
+    <p>You can see the number of remaining tickets in the Campaign Status page.</p><img class="bordered" src="campaign-overview.png" alt="campaign overview">
+    <h1>Mission System</h1>
+    <p>Missions are available through the Communications menu. Completing these missions advance the ground campaign, degrade enemy defenses or work towards unlocking the final strike.</p>
+    <p>Missions are categorized into types. Each aircraft has access to a limited set of mission types.</p>
+    <p>You can request a mission in one of two ways:</p>
+    <ol>
+      <li><code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code>, <code>F1. Request (Type)...</code> presents a selection of mission types. Selecting a type will assign the top priority unassigned mission of that type.<br>
+      <img src="mission-type-menu.png" alt="mission request (type)"></li>
+      <li><code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code>, <code>F2. Request (List)...</code> presents a list of the overall top priority unassigned missions to select.<br>
+      <img src="mission-list-menu.png" alt="mission request (list)"></li>
+    </ol>
+    <p>Assigned missions are removed from the mission request menu. To join a friend's assigned mission, input their four-digit mission code via <code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code>, <code>F4. Join (Input Code)...</code></p>
+    <p>The mission briefing provides key information including the location of the mission, a description of the target and warnings about known threats. You can show the mission briefing via <code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code>, <code>F1. Briefing</code></p><br>
+    <img src="mission-briefing.png" alt="mission briefing">
+    <p>The mission status shows what percentage of the mission completion threshold has been reached. This is useful to tell if you've destroyed enough of the targets to complete the mission. You can show the mission status via <code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code> <code>F2. Status</code></p>
+    <p>You can extend a mission's timer by 30 minutes via <code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code>, <code>F4. Rolex +30</code>. There is no penalty for extending a timer. Use it as needed on long missions.</p>
+    <p>You can abort a mission via <code>Communication menu</code>, <code>F10. Other...</code>, <code>F4. Mission...</code>, <code>F3. Abort</code>. There is no penalty for aborting a mission. It will be returned to the mission list and can be selected by any player.</p>
+    <h2>Mission Types</h2>
+    <h3>Anti-Ship</h3>
+    <p>Anti-ship missions are about destroying enemy naval assets. These are a good fit for aircraft that can carry anti-ship weapons like the AGM-65F/K and AGM-84D.</p>
+    <h3>Armed Recon</h3>
+    <p>Armed Recon missions are about attacking light enemies such as motorized infantry and light air defenses. These are a good fit for helicopters and ground attack aircraft. Completing Armed Recon missions allows ground forces to advance and secure the area.</p>
+    <h3>Battlefield Air Interdiction (BAI)</h3>
+    <p>BAI missions are about searching and destroying enemy supply, logistic and fire support assets including supply points, convoys, artillery and Scud missiles. These missions usually require searching a large area such as a grid square or highway. Completing BAI missions allows ground forces to advance and secure the area.</p>
+    <h3>Combat Air Patrol (CAP)</h3>
+    <p>CAP missions are about protecting friendly aircraft from enemy aircraft. CAP missions are completed when all other missions in their area are complete.</p>
+    <blockquote>
+      <p>ℹ️ <em>You don't need to accept a CAP mission to provide CAP. The CAP missions are purely informational on what areas of the map still have missions to complete.</em></p>
+    </blockquote>
+    <h3>Close Air Support (CAS)</h3>
+    <p>CAS missions are about engaging enemy ground forces in direct contact with friendly forces. These missions sometimes use DCS' JTAC and nine-line system. Target identification is critical to avoid friendly fire. Completing CAS missions allows ground forces to advance and secure the area.</p>
+    <h3>Combat Search and Rescue (CSAR)</h3>
+    <p>Whenever a player ejects from their aircraft, a CSAR mission is generated. An NPC pilot is left behind at the site of ejection. Players flying transport helicopters can pick up the pilot and return them to certain friendly bases to regain tickets.</p>
+    <blockquote>
+      <p>ℹ️ <em>CSAR rescues have to be returned to one of the starting bases; returning to Hatay won't complete the mission.</em></p>
+    </blockquote>
+    <h3>Suppression of Enemy Air Defense (SEAD)</h3>
+    <p>SEAD missions are about degrading and destroying the enemy's air defense network. Flashpoint Levant uses a networked air defense script. Enemy radars and SAM sites will act as a coordinated air defense network that must be picked apart. These missions are a good fit for fast aircraft that can carry anti-radiation missiles, the ADM-141 TALD, cluster bombs and high-drag bombs.</p>
+    <h3>Strike</h3>
+    <p>Strike missions are about destroying strategic targets like facilities and command centers. These missions are a good fit for fast air-to-ground or multirole aircraft. Completing strike missions eventually unlocks the final strike mission.</p>
+    <h1>Loadout System</h1>
+    <p>Flashpoint Levant enforces a limited loadout system. Each aircraft has a limited number of points to "spend" on payload. <strong>If you attempt to takeoff with too many points spent, a script will increase the weight of your aircraft and you will fall out of the sky.</strong></p>
+    <blockquote>
+      <p>ℹ️ <em>Aircraft which can carry laser guided weapons, but cannot carry a targeting pod, have increased points to spend on air to ground weapons. Slower aircraft focused exclusively on ground attack also have increased points to spend on air to ground weapons.</em></p>
+    </blockquote>
+    <p>The exact point limits and costs are listed in the mission briefing slides. General rules:</p>
+    <ul>
+      <li>Types of weapons that were not deployed by 1989 are generally not available. This includes:
+        <ul>
+          <li>Most active radar guided missiles
+            <ul>
+              <li>AIM-120 AMRAAM</li>
+              <li>R-77 (Adder)</li>
+              <li>SD-10 (Adze<strong>)</strong></li>
+            </ul>
+          </li>
+          <li>The AIM-9X variant of the AIM-9 Sidewinder</li>
+          <li>GPS guided weapons</li>
+          <li>Glide bombs</li>
+          <li>Cruise missiles</li>
+          <li>Sensor Fuzed Weapon</li>
+          <li>APKWS</li>
+        </ul>
+      </li>
+      <li>The AIM-54 Phoenix has a high cost</li>
+      <li>Guided air to ground weapons have a high cost</li>
+      <li>Semi-active radar guided missiles have a moderate cost</li>
+      <li>Cluster bombs have a moderate cost</li>
+      <li>Most infrared guided missiles are free</li>
+      <li>Unguided bombs and rockets are free</li>
+    </ul>
+    <p>You can check your current point spend when on the ground at a friendly base by pressing <code>Communication menu</code>, <code>F10. Other...</code>, <code>F3. Check Payload</code>. You should always check your payload before departure.</p>
+    <h1>Capturing Airbases</h1>
+    <p>When certain ground missions are completed in an area, friendly ground forces will advance and capture airbases. You can check the status of these airfields using <code>Communication Menu</code>, <code>F10. Other...</code>, <code>F2. Theater Update</code>.</p>
+    <p>Hatay begins as hostile and is converted to a friendly forward airbase when captured. Players do not lose tickets if they disconnect after landing at a friendly Hatay. This base is useful as an emergency divert field and forward rearming base.</p>
+    <p>Other enemy bases such as Aleppo, Bassel al-Assad and Abu al-Duhur are converted to neutral airfields. They can be used for refueling, but players lose tickets if they disconnect at these bases.</p>
+    <blockquote>
+      <p>ℹ️ <em>Captured airbases are not necessarily safe to land at. If the ground missions in the area have not yet been completed, there may be MANPADS waiting to attack aircraft descending on approach. Enemy aircraft may also attack the runway, leaving craters that make landing and takeoff more challenging. Exercise caution when approaching any forward airfield.</em></p>
+    </blockquote>
+    <h1>Web Tools</h1>
+    <p>The website provides useful tools:</p>
+    <ul>
+      <li>Campaign status, including ticket count, remaining mission count and time to next mission restart</li>
+      <li>ACMI files for review in TacView</li>
+      <li>Sneaker GCI, a free GCI/map tool</li>
+    </ul>
+  </div>
+</body>
+</html>
