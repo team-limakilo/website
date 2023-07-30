@@ -19,6 +19,16 @@
     border: 2px dashed rgb(87, 87, 8);
 }
 
+blockquote {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
+    border: 1px outset rgb(40, 52, 56);
+    background: rgba(30, 95, 112, 0.2);
+    color: rgb(235, 235, 235);
+    border-radius: 8px;
+    padding: 0.1px 1em;
+    margin: 0;
+}
+
 img {
     max-width: 100%;
 }
@@ -26,6 +36,13 @@ img {
 @media(max-width: 1080px) {
     .panel {
         padding: 1em;
+    }
+    blockquote {
+        background: rgba(53, 145, 168, 0.1);
+        color: rgb(220, 220, 220);
+    }
+    blockquote em {
+        font-style: normal;
     }
     ol {
         padding-left: 1em;
