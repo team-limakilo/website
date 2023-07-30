@@ -202,13 +202,6 @@ img {
     object-fit: scale-down;
 }
 
-/* Fix broken padding on embeds */
-.youtube-embed + *::before {
-    display: block;
-    content: '';
-    margin-top: 2em;
-}
-
 .panel {
     background: rgb(24, 24, 24);
     border: 1px outset rgb(50, 50, 50);
@@ -244,8 +237,16 @@ iframe.hidden {
 	padding-bottom: 56.25%; /* 9/16 (aspect ratio) */
 	position: relative;
 }
+
 .youtube-embed iframe {
 	width: 100%;
 	height: 100%;
 	position: absolute;
+}
+
+/* Extra padding on embeds */
+.youtube-embed + *::before {
+    display: block;
+    content: '';
+    margin-top: 2em;
 }
