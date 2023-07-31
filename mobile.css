@@ -40,6 +40,14 @@
     body:not(.menu-open) nav {
         transform: translateX(-100vw);
     }
+    blockquote {
+        width: 100%;
+        background: rgba(53, 145, 168, 0.1);
+        color: rgb(220, 220, 220);
+    }
+    blockquote em {
+        font-style: normal;
+    }
     .panel {
         min-height: 100%;
         margin: 0;

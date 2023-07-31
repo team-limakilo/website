@@ -202,13 +202,27 @@ img {
     object-fit: scale-down;
 }
 
+blockquote {
+    width: fit-content;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
+    border: 1px solid rgb(40, 52, 56);
+    background: rgba(24, 76, 90, 0.2);
+    color: rgb(235, 235, 235);
+    border-radius: 8px;
+    padding: 0.1px 1em;
+    margin: 0;
+}
+
+.list-like {
+    padding-left: calc(40px - 0.875em);
+}
+
 .panel {
     background: rgb(24, 24, 24);
     border: 1px solid rgb(50, 50, 50);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.33);
     border-radius: 20px;
-    width: 100%;
-    max-width: 640px;
+    max-width: 1280px;
     height: fit-content;
     padding: 1em 2em;
     margin: 1em;
