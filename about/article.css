@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+    width: fit-content;
+}
+
 .background {
     position: fixed;
     z-index: -1000;
@@ -18,6 +22,24 @@
 
 .bordered {
     border: 2px dashed rgb(87, 87, 8);
+}
+
+.anchor, .anchor:visited {
+    color: gray !important;
+    text-decoration: none;
+    white-space: pre-line;
+}
+
+.flash {
+    animation: 500ms ease-out 2 alternate flash;
+}
+
+* > .anchor {
+    visibility: hidden;
+}
+
+*:hover > .anchor {
+    visibility: visible;
 }
 
 img {
@@ -42,5 +64,18 @@ table th, table td {
     }
     .panel {
         padding: 1em;
+    }
+}
+
+@keyframes flash {
+    0% {
+        color: white;
+        background: rgba(62, 224, 207, 0);
+        margin-left: 0;
+    }
+    100% {
+        color: black;
+        background: rgba(62, 224, 207, 1);
+        transform: 0.25em;
     }
 }
