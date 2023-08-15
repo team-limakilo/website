@@ -15,7 +15,7 @@ function slugify(string) {
     const slug = string && string.toLowerCase()
         .replace(/\s+/g, "-")
         .replace(/&/g, "and")
-        .replace(/[()]/g, "")
+        .replace(/[()/]/g, "")
         .trim();
     return encodeURIComponent(slug);
 }
