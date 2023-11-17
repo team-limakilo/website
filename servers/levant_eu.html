@@ -2,31 +2,30 @@
 <link rel="stylesheet" href="../common.css">
 <link rel="stylesheet" href="../mobile.css">
 
-<body class="flex">
+<body class="flex" data-status-url="https://levant.eu.limakilo.net/status/data">
     <div class="panel">
         <h1>Flashpoint Levant EU</h1>
         <ul>
-            <li class="version">DCS Version: <code id="ver" data-url="https://levant.eu.limakilo.net/status/data">Loading...</code></li>
-            <li>Name: <code>LK|EU - Flashpoint Levant - Operation Damascus Steel</code></li>
+            <li>Name: LK|EU - Flashpoint Levant - Operation Damascus Steel</li>
+            <li class="hidden">Server Status: <span id="status">Checking...</span></li>
+            <li class="hidden">DCS Version: <span id="ver">Checking...</span></li>
             <li>Address: <code>eu.limakilo.net:10308</code></li>
             <li>Password: <code>lk1levant</code></li>
             <br>
             <li>SRS: <code>eu.limakilo.net:5002</code></li>
-            <li>SRS EAM password: <code>lk1levant</code></li>
-            <li>SRS Autoconnect: <code>on   </code></li>
+            <li>SRS EAM Password: <code>lk1levant</code></li>
+            <li>SRS Autoconnect Enabled: <code>yes</code></li>
             <br>
-            <li>LotATC: <code>eu.limakilo.net:10310</code></li>
+            <li>LotATC: <code>eu.limakilo.net</code> Port: <code>10310</code></li>
             <li>LotATC password: <code>lk1levant</code></li>
-        </ul>
-        <details class="list-like">
-            <summary>System Specifications</summary>
-            <blockquote>
+            <br>
+            <li>
                 <div>CPU: AMD Ryzen 5 3600</div>
                 <div>RAM: 2x32GB DDR4 3200MHz</div>
                 <div>Storage: 2x512GB Samsung PM981a</div>
                 <div>Location: Falkenstein, Saxony, Germany</div>
-            </blockquote>
-        </details>
+            </li>
+        </ul>
     </div>
 </body>
-<script src="get_version.js"></script>
+<script src="get_status.mjs" type="module"></script>
