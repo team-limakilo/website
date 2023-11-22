@@ -1,4 +1,4 @@
-@media(max-width: 1080px) {
+@media(max-width: 1200px) {
     .mobile {
         display: unset;
     }
@@ -18,7 +18,7 @@
         position: fixed;
         z-index: 90;
         border-left: 1px solid gray;
-        cursor: col-resize;
+        cursor: pointer;
         height: 100%;
         width: 16px;
         left: 0;
@@ -26,6 +26,10 @@
     }
     .menu-bar.hidden {
         border-left: 1px solid transparent;
+    }
+    .menu-bar:hover {
+        border-left: 1px solid gray;
+        transition: border-left 50ms ease-in;
     }
     nav {
         position: fixed;
@@ -86,5 +90,12 @@
             background: transparent;
             color: turquoise;
         }
+    }
+}
+
+/* This is so small we can't even display the menu properly anymore */
+@media(max-width: 250px) {
+    .menu, .menu-bar, .shade, nav {
+        display: none;
     }
 }
