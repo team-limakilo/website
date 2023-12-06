@@ -31,11 +31,11 @@ async function updateStatus() {
  */
 function formatStatus(date, ended) {
     const then = new Date(date).getTime() / 1000;
+    const secondsAgo = new Date().getTime() / 1000 - then;
     if (ended) {
-        const secondsAgo = new Date().getTime() / 1000 - then;
         return { text: `Offline (${formatSecondsAgo(secondsAgo)})`, classList: ["error"] };
     } else if (now - then > 120) {
-        return { text: "Unknown", classList: ["warning"] };
+        return { text: `Unknown (${formatSecondsAgo(secondsAgo)})`, classList: ["warning"] };
     } else {
         return { text: "Running", classList: ["success"] };
     }
