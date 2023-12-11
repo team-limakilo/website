@@ -5,24 +5,27 @@ const status = document.getElementById("status");
 status.parentElement.classList.remove("hidden");
 
 const now = new Date().getTime() / 1000;
+const requestWaitTime = 15 * 1000;
 
 async function updateStatus() {
-    await fetch(document.body.dataset.statusUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            const { dcsVersion, date, ended } = data;
-            ver.innerText = dcsVersion || "Unknown";
-            ver.classList = dcsVersion ? ["code"] : ["warning"];
-            status.innerText = formatStatus(date, ended).text;
-            status.classList = formatStatus(date, ended).classList;
-        })
-        .catch((err) => {
-            status.innerText = "Failed to fetch information";
-            status.classList = ["error"];
-            ver.innerText = "Unknown";
-            ver.classList = ["warning"];
-            throw err;
-        });
+    try {
+        const timeoutController = new AbortController();
+        const requestTimeout = setTimeout(() => timeoutController.abort(new Error("Request Timed Out")), requestWaitTime);
+        const response = await fetch(document.body.dataset.statusUrl, { signal: timeoutController.signal });
+        clearTimeout(requestTimeout);
+        const data = await response.json();
+        const { dcsVersion, date, ended } = data;
+        ver.innerText = dcsVersion || "Unknown";
+        ver.classList = dcsVersion ? ["code"] : ["warning"];
+        status.innerText = formatStatus(date, ended).text;
+        status.classList = formatStatus(date, ended).classList;
+    } catch (err) {
+        status.innerText = "Failed to fetch information";
+        status.classList = ["error"];
+        ver.innerText = "Unknown";
+        ver.classList = ["warning"];
+        throw err;
+    }
 }
 
 /**
